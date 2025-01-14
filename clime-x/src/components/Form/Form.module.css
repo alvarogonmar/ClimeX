@@ -18,3 +18,14 @@
 .field ::placeholder {
     color: var(--white);
 }
+
+.submit {
+    background-color: var(--primary);
+    border: none;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 1rem;
+}

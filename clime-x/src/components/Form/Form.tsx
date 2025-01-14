@@ -21,7 +21,7 @@ export default function Form() {
         </select>
       </div>
 
-      <input type="submit" value="Request Climate" />
+      <input className={styles.submit} type="submit" value="Request Climate" />
     </form>
   );
 }
