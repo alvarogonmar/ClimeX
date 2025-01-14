@@ -1,7 +1,9 @@
+import styles from "./App.module.css";
+
 function App() {
   return (
     <>
-      <h1>Weather Forecast</h1>
+      <h1 className={styles.title}>Weather Forecast</h1>
     </>
   );
 }
