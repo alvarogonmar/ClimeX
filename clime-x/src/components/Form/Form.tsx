@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { SearchType } from "../../types";
 import { countries } from "../../data/countries";
 import styles from "./Form.module.css";
 
 export default function Form() {
-  const [search, setSearch] = useState({
+  const [search, setSearch] = useState<SearchType>({
     city: "",
     country: "",
   });
+
   return (
     <form className={styles.form}>
       <div className={styles.field}>
