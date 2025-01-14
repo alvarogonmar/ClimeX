@@ -10,13 +10,17 @@ export default function Form() {
 
       <div>
         <label htmlFor="country">Country:</label>
-        <option value="">-- Choose a Country --</option>
-        {countries.map((country) => (
-          <option key={country.name} value={country.code}>
-            {country.name}
-          </option>
-        ))}
+        <select>
+          <option value="">-- Choose a Country --</option>
+          {countries.map((country) => (
+            <option key={country.name} value={country.code}>
+              {country.name}
+            </option>
+          ))}
+        </select>
       </div>
+
+      <input type="submit" value="Request Climate" />
     </form>
   );
 }
