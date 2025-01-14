@@ -1,3 +1,5 @@
+import { countries } from "../../data/countries";
+
 export default function Form() {
   return (
     <form>
@@ -8,7 +10,12 @@ export default function Form() {
 
       <div>
         <label htmlFor="country">Country:</label>
-        <input id="country" type="text" name="country" placeholder="country" />
+        <option value="">-- Choose a Country --</option>
+        {countries.map((country) => (
+          <option key={country.name} value={country.code}>
+            {country.name}
+          </option>
+        ))}
       </div>
     </form>
   );
