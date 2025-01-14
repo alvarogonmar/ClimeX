@@ -3,13 +3,13 @@ import styles from "./Form.module.css";
 
 export default function Form() {
   return (
-    <form>
-      <div>
+    <form className={styles.form}>
+      <div className={styles.field}>
         <label htmlFor="city">City:</label>
         <input id="city" type="text" name="city" placeholder="City" />
       </div>
 
-      <div>
+      <div className={styles.field}>
         <label htmlFor="country">Country:</label>
         <select>
           <option value="">-- Choose a Country --</option>
