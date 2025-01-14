@@ -12,7 +12,12 @@ export default function Form() {
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
-  ) => {};
+  ) => {
+    setSearch({
+      ...search,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <form className={styles.form}>
@@ -29,8 +34,13 @@ export default function Form() {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="country">Country:</label> \
-        <select id="country" value={search.country}>
+        <label htmlFor="country">Country:</label>
+        <select
+          id="country"
+          value={search.country}
+          name="country"
+          onChange={handleChange}
+        >
           <option value="">-- Choose a Country --</option>
           {countries.map((country) => (
             <option key={country.name} value={country.code}>
