@@ -1,4 +1,4 @@
 export const formatTemperature = (temperature : number) : number => {
     const kelvin = 273
-    return temperature - kelvin
+    return parseInt((temperature - kelvin).toString( ))
 }
