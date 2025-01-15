@@ -1,6 +1,6 @@
 import axios from "axios" // Libreria para consultar apis externas
 // import { z } from "zod"
-import { object, string, number } from "valibot"
+import { object, string, number, Output, parse } from "valibot"
 import { SearchType } from "../types"
 
 
@@ -30,7 +30,7 @@ import { SearchType } from "../types"
 // type Weather = z.infer<typeof Weather>
 
 // Valibot - Crear el Schema
-const weatherSchema = object({
+const WeatherSchema = object({
     name: string(),
     main: object({
         temp: number(),
@@ -38,6 +38,7 @@ const weatherSchema = object({
         temp_min: number()
     })
 })
+type Weather = Output<typeof WeatherSchema>
 
 export default function useWeather() {
 
@@ -74,6 +75,15 @@ export default function useWeather() {
             //     console.log(result.data.name)
             //     console.log(result.data.main.temp)
             // }
+
+            // Valibot
+            const {data: weatherResult} = await axios(weatherUrl)
+            const result = parse(WeatherSchema, weatherResult)
+            if(result) {
+                console.log(result.name)
+            }
+            
+
 
         } catch (error) {
             console.log(error)
