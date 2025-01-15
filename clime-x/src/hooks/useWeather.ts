@@ -1,5 +1,6 @@
 import axios from "axios" // Libreria para consultar apis externas
-import { z } from "zod"
+// import { z } from "zod"
+import { object, string, number } from "valibot"
 import { SearchType } from "../types"
 
 
@@ -16,15 +17,15 @@ import { SearchType } from "../types"
 // }
 
 // Zod - Crear primero un esquima
-const Weather = z.object({
-    name: z.string(),
-    main: z.object({
-        temp: z.number(),
-        temp_max: z.number(),
-        temp_min: z.number(),
+// const Weather = z.object({
+//     name: z.string(),
+//     main: z.object({
+//         temp: z.number(),
+//         temp_max: z.number(),
+//         temp_min: z.number(),
 
-    })
-})
+//     })
+// })
 
 type Weather = z.infer<typeof Weather>
 
@@ -57,12 +58,12 @@ export default function useWeather() {
 
 
             // Zod
-            const {data: weatherResult} = await axios(weatherUrl)
-            const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
-            if(result.success) {
-                console.log(result.data.name)
-                console.log(result.data.main.temp)
-            }
+            // const {data: weatherResult} = await axios(weatherUrl)
+            // const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
+            // if(result.success) {
+            //     console.log(result.data.name)
+            //     console.log(result.data.main.temp)
+            // }
 
         } catch (error) {
             console.log(error)
