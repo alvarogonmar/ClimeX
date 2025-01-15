@@ -16,7 +16,7 @@ import { SearchType } from "../types"
 //     )
 // }
 
-// Zod - Crear primero un esquima
+// Zod - Crear primero un schema
 // const Weather = z.object({
 //     name: z.string(),
 //     main: z.object({
@@ -27,7 +27,17 @@ import { SearchType } from "../types"
 //     })
 // })
 
-type Weather = z.infer<typeof Weather>
+// type Weather = z.infer<typeof Weather>
+
+// Valibot - Crear el Schema
+const weatherSchema = object({
+    name: string(),
+    main: object({
+        temp: number(),
+        temp_max: number(),
+        temp_min: number()
+    })
+})
 
 export default function useWeather() {
 
