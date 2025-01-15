@@ -5,7 +5,10 @@ import styles from "./Form.module.css";
 import { ChangeEvent, FormEvent } from "react";
 import Alert from "../Alert/Alert";
 
-export default function Form() {
+type FormProps = {
+  fetchWeather: () => void;
+};
+export default function Form({ fetchWeather }: FormProps) {
   const [search, setSearch] = useState<SearchType>({
     city: "",
     country: "",
@@ -28,6 +31,7 @@ export default function Form() {
       setAlert("All Fields are Required");
       return;
     }
+    fetchWeather();
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
