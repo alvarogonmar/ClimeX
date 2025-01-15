@@ -12,7 +12,7 @@ function App() {
 
       <div className={styles.container}>
         <Form fetchWeather={fetchWeather} />
-        <WeatherDetail />
+        <WeatherDetail weather={weather} />
       </div>
     </>
   );

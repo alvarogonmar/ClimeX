@@ -28,7 +28,7 @@ const Weather = z.object({
     })
 })
 
-type Weather = z.infer<typeof Weather>
+export type Weather = z.infer<typeof Weather>
 
 // Valibot - Crear el Schema
 //  const WeatherSchema = object({
