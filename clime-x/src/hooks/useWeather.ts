@@ -1,6 +1,6 @@
 import axios from "axios" // Libreria para consultar apis externas
 import { z } from "zod"
-import { SearchType, Weather } from "../types"
+import { SearchType } from "../types"
 
 
 // TYPE GUARD O ASSERTION
@@ -14,6 +14,19 @@ import { SearchType, Weather } from "../types"
 //         typeof (weather as Weather).main.temp_min === "number" 
 //     )
 // }
+
+// Zod - Crear primero un esquima
+const Weather = z.object({
+    name: z.string(),
+    main: z.object({
+        temp: z.number(),
+        temp_max: z.number(),
+        temp_min: z.number(),
+
+    })
+})
+
+type Weather = z.infer<typeof Weather>
 
 export default function useWeather() {
 
