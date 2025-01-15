@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SearchType } from "../../types";
 import { countries } from "../../data/countries";
 import styles from "./Form.module.css";
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 
 export default function Form() {
   const [search, setSearch] = useState<SearchType>({
@@ -19,8 +19,15 @@ export default function Form() {
     });
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (Object.values(search).includes("")) {
+      console.log("ERROR");
+    }
+  };
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label htmlFor="city">City:</label>
         <input
