@@ -1,3 +1,5 @@
-export default function Alert() {
-  return <div>Alert</div>;
+import { ReactNode } from "react";
+
+export default function Alert({ children }: { children: ReactNode }) {
+  return <div>{children}</div>;
 }

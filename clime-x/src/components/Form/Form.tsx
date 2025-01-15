@@ -3,12 +3,14 @@ import { SearchType } from "../../types";
 import { countries } from "../../data/countries";
 import styles from "./Form.module.css";
 import { ChangeEvent, FormEvent } from "react";
+import Alert from "../Alert/Alert";
 
 export default function Form() {
   const [search, setSearch] = useState<SearchType>({
     city: "",
     country: "",
   });
+  const [alert, setAlert] = useState("");
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
@@ -23,11 +25,13 @@ export default function Form() {
     e.preventDefault();
 
     if (Object.values(search).includes("")) {
-      console.log("ERROR");
+      setAlert("All Fields are Required");
+      return;
     }
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {alert && <Alert>{alert}</Alert>}
       <div className={styles.field}>
         <label htmlFor="city">City:</label>
         <input
