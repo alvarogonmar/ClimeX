@@ -1,16 +1,19 @@
 import axios from "axios" // Libreria para consultar apis externas
+import { z } from "zod"
 import { SearchType, Weather } from "../types"
 
-function isWeatherResult(weather: unknown) : weather is Weather { // Usar unknown para no tener any
-    return (
-        Boolean(weather) &&
-        typeof weather === "object" && 
-        typeof (weather as Weather).name === "string" &&
-        typeof (weather as Weather).main.temp === "number" &&
-        typeof (weather as Weather).main.temp_max === "number" &&
-        typeof (weather as Weather).main.temp_min === "number" 
-    )
-}
+
+// TYPE GUARD O ASSERTION
+// function isWeatherResult(weather: unknown) : weather is Weather { // Usar unknown para no tener any
+//     return (
+//         Boolean(weather) &&
+//         typeof weather === "object" && 
+//         typeof (weather as Weather).name === "string" &&
+//         typeof (weather as Weather).main.temp === "number" &&
+//         typeof (weather as Weather).main.temp_max === "number" &&
+//         typeof (weather as Weather).main.temp_min === "number" 
+//     )
+// }
 
 export default function useWeather() {
 
@@ -31,13 +34,13 @@ export default function useWeather() {
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
             
             // Type Guards
-            const {data: weatherResult} = await axios(weatherUrl)
-            const result = isWeatherResult(weatherResult)
-            if(result) {
-                console.log(weatherResult.name)
-            } else{
-                console.log("Error")
-            }
+            // const {data: weatherResult} = await axios(weatherUrl)
+            // const result = isWeatherResult(weatherResult)
+            // if(result) {
+            //     console.log(weatherResult.name)
+            // } else{
+            //     console.log("Error")
+            // }
 
 
         } catch (error) {
