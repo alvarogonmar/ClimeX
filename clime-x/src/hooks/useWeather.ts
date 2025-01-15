@@ -56,6 +56,14 @@ export default function useWeather() {
             // }
 
 
+            // Zod
+            const {data: weatherResult} = await axios(weatherUrl)
+            const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
+            if(result.success) {
+                console.log(result.data.name)
+                console.log(result.data.main.temp)
+            }
+
         } catch (error) {
             console.log(error)
         }
