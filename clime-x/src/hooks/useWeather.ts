@@ -1,7 +1,8 @@
 import axios from "axios" // Libreria para consultar apis externas
-// import { z } from "zod"
-import { object, string, number, Output, parse } from "valibot"
+import { z } from "zod"
+// import { object, string, number, Output, parse } from "valibot"
 import { SearchType } from "../types"
+import { useState } from "react"
 
 
 // TYPE GUARD O ASSERTION
@@ -17,30 +18,39 @@ import { SearchType } from "../types"
 // }
 
 // Zod - Crear primero un schema
-// const Weather = z.object({
-//     name: z.string(),
-//     main: z.object({
-//         temp: z.number(),
-//         temp_max: z.number(),
-//         temp_min: z.number(),
+const Weather = z.object({
+    name: z.string(),
+    main: z.object({
+        temp: z.number(),
+        temp_max: z.number(),
+        temp_min: z.number(),
 
-//     })
-// })
-
-// type Weather = z.infer<typeof Weather>
-
-// Valibot - Crear el Schema
-const WeatherSchema = object({
-    name: string(),
-    main: object({
-        temp: number(),
-        temp_max: number(),
-        temp_min: number()
     })
 })
-type Weather = Output<typeof WeatherSchema>
+
+type Weather = z.infer<typeof Weather>
+
+// Valibot - Crear el Schema
+//  const WeatherSchema = object({
+//      name: string(),
+//      main: object({
+//          temp: number(),
+//          temp_max: number(),
+//          temp_min: number()
+//      })
+//  })
+//  type Weather = Output<typeof WeatherSchema>
 
 export default function useWeather() {
+
+    const[weather, setWeather] = useState<Weather>({
+        name: "",
+        main: {
+            temp: 0,
+            temp_max: 0,
+            temp_min: 0
+        }
+    })
 
     const fetchWeather = async (search : SearchType) => {
 
@@ -69,19 +79,19 @@ export default function useWeather() {
 
 
             // Zod
-            // const {data: weatherResult} = await axios(weatherUrl)
-            // const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
-            // if(result.success) {
-            //     console.log(result.data.name)
-            //     console.log(result.data.main.temp)
-            // }
+            const {data: weatherResult} = await axios(weatherUrl)
+            const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
+            if(result.success) {
+                console.log(result.data.name)
+                console.log(result.data.main.temp)
+            }
 
             // Valibot
-            const {data: weatherResult} = await axios(weatherUrl)
-            const result = parse(WeatherSchema, weatherResult)
-            if(result) {
-                console.log(result.name)
-            }
+            // const {data: weatherResult} = await axios(weatherUrl)
+            // const result = parse(WeatherSchema, weatherResult)
+            // if(result) {
+            //     console.log(result.name)
+            // }
             
 
 
