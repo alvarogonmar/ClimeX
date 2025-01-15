@@ -82,8 +82,7 @@ export default function useWeather() {
             const {data: weatherResult} = await axios(weatherUrl)
             const result = Weather.safeParse(weatherResult) // SafeParse retornara true o false si es que si esta bien hecho nuestra comprobacion
             if(result.success) {
-                console.log(result.data.name)
-                console.log(result.data.main.temp)
+                setWeather(result.data)
             }
 
             // Valibot
@@ -100,6 +99,7 @@ export default function useWeather() {
         }
     }
   return {
+        weather,
         fetchWeather
   }
 }
