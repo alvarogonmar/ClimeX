@@ -5,5 +5,10 @@ type WeatherDetailProps = {
 };
 
 export default function WeatherDetail({ weather }: WeatherDetailProps) {
-  return <div>WeatherDetail</div>;
+  return (
+    <div>
+      <h2>The Weather in: {weather.name}</h2>
+      <p>{weather.main.temp}</p>
+    </div>
+  );
 }
