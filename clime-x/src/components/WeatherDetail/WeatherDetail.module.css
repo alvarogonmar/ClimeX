@@ -5,3 +5,8 @@
     text-align: center;
     padding: 1rem;
 }
+.current {
+    font-size: 6rem;
+    font-weight: 900;
+    margin: 0;
+}

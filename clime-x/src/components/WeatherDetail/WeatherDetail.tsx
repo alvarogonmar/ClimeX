@@ -10,7 +10,9 @@ export default function WeatherDetail({ weather }: WeatherDetailProps) {
   return (
     <div className={styles.container}>
       <h2>The Weather in: {weather.name}</h2>
-      <p>{formatTemperature(weather.main.temp)}&deg;C</p>
+      <p className={styles.current}>
+        {formatTemperature(weather.main.temp)}&deg;C
+      </p>
       <div>
         <p>
           Min: <span>{formatTemperature(weather.main.temp_min)}&deg;C</span>
