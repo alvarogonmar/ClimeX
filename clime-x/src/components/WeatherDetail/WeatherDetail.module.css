@@ -10,3 +10,8 @@
     font-weight: 900;
     margin: 0;
 }
+.temperatures {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
