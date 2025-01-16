@@ -56,6 +56,8 @@ export default function useWeather() {
     
     const [loading, setLoading] = useState(false)
 
+    const [notFound, setNotFound] = useState(false)
+
     const fetchWeather = async (search : SearchType) => {
 
         const appId = import.meta.env.VITE_API_KEY
@@ -68,6 +70,12 @@ export default function useWeather() {
             ${search.country}&appid=${appId}`
 
             const {data} = await axios(geoUrl) // peticion de datos tipo get (default)
+
+            // Comprobar si existe
+            if(!data[0]) {
+                setNotFound(true)
+                return
+            }
             
             const lat = data[0].lat
             const lon = data[0].lon
@@ -111,6 +119,7 @@ export default function useWeather() {
   return {
         weather,
         loading,
+        notFound,
         fetchWeather,
         hasWeatherData
   }
