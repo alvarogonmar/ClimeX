@@ -1,5 +1,6 @@
 import { formatTemperature } from "../../helpers";
 import { Weather } from "../../hooks/useWeather";
+import styles from "./WeatherDetail.module.css";
 
 type WeatherDetailProps = {
   weather: Weather;
@@ -7,7 +8,7 @@ type WeatherDetailProps = {
 
 export default function WeatherDetail({ weather }: WeatherDetailProps) {
   return (
-    <div>
+    <div className={styles.container}>
       <h2>The Weather in: {weather.name}</h2>
       <p>{formatTemperature(weather.main.temp)}&deg;C</p>
       <div>
