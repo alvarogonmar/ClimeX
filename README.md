@@ -22,7 +22,7 @@ ClimeX App is a web application designed to help users check the current weather
 ### Check the Weather:
 
 1. Enter the name of a city.
-2. Add the country.
+2. Select the country.
 3. Click the search button.
 4. The app will display:
    - Current temperature.
