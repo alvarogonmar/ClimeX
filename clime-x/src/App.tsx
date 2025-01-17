@@ -11,8 +11,10 @@ function App() {
 
   return (
     <>
-      <h1 className={styles.title}>Weather Forecast</h1>
-
+      <h1 className={styles.title}>
+        Clime
+        <span className={styles.x}>X</span>
+      </h1>
       <div className={styles.container}>
         <Form fetchWeather={fetchWeather} />
         {loading && <Spinner />}
